@@ -1,0 +1,133 @@
+package com.popalay.tutors
+
+import android.app.Dialog
+import android.os.Bundle
+import android.support.v4.app.DialogFragment
+import android.support.v4.app.FragmentManager
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+
+class TutorialDialog : DialogFragment() {
+
+    private object ARGS {
+        const val TEXT_COLOR = "TEXT_COLOR"
+        const val TEXT_SIZE = "TEXT_SIZE"
+        const val SHADOW_COLOR = "SHADOW_COLOR"
+        const val COMPLETE_ICON = "COMPLETE_ICON"
+        const val NEXT_BUTTON_TEXT = "NEXT_BUTTON_TEXT"
+        const val COMPLETE_BUTTON_TEXT = "COMPLETE_BUTTON_TEXT"
+        const val SPACING = "SPACING"
+        const val LINE_WIDTH = "LINE_WIDTH"
+        const val CANCELABLE = "CANCELABLE"
+    }
+
+    private var textColorRes: Int = 0
+    private var shadowColorRes: Int = 0
+    private var textSizeRes: Int = 0
+    private var completeIconRes: Int = 0
+    private var nextButtonTextRes: Int = 0
+    private var completeButtonTextRes: Int = 0
+    private var spacingRes: Int = 0
+    private var lineWidthRes: Int = 0
+    private var cancelableCustom: Boolean = false
+
+    private var listener: TutorialListener? = null
+
+    companion object {
+        fun newInstance(builder: Builder): TutorialDialog {
+            val args = Bundle()
+            val fragment = TutorialDialog()
+
+            args.putInt(ARGS.TEXT_COLOR, builder.textColorRes)
+            args.putInt(ARGS.SHADOW_COLOR, builder.shadowColorRes)
+            args.putInt(ARGS.TEXT_SIZE, builder.textSizeRes)
+            args.putInt(ARGS.COMPLETE_ICON, builder.completeIconRes)
+            args.putInt(ARGS.NEXT_BUTTON_TEXT, builder.nextButtonTextRes)
+            args.putInt(ARGS.COMPLETE_BUTTON_TEXT, builder.completeButtonTextRes)
+            args.putInt(ARGS.SPACING, builder.spacingRes)
+            args.putInt(ARGS.LINE_WIDTH, builder.lineWidthRes)
+            args.putBoolean(ARGS.CANCELABLE, builder.cancelable)
+
+            fragment.arguments = args
+            return fragment
+        }
+
+        fun create(init: Builder.() -> Unit) = Builder(init).build()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        getArgs(arguments)
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        return dialog
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = createLayout()
+        initViews(view)
+        return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog.window?.apply {
+            setBackgroundDrawableResource(android.R.color.transparent)
+            setDimAmount(0f)
+            setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        }
+    }
+
+    fun setTutorialListener(tutorialListener: TutorialListener) {
+        this.listener = tutorialListener
+    }
+
+    fun showTutorial(fragmentManager: FragmentManager, view: View, text: CharSequence, isLast: Boolean = false) {
+        if (!isVisible) {
+            show(fragmentManager, this.javaClass.name)
+        }
+        view.post { (this.view as TutorialLayout).showTutorial(view, text, isLast) }
+    }
+
+    fun closeTutorial() {
+        dismiss()
+        (this.view as TutorialLayout).closeTutorial()
+    }
+
+    private fun getArgs(args: Bundle) {
+        textColorRes = args.getInt(ARGS.TEXT_COLOR)
+        shadowColorRes = args.getInt(ARGS.SHADOW_COLOR)
+        textSizeRes = args.getInt(ARGS.TEXT_SIZE)
+        completeIconRes = args.getInt(ARGS.COMPLETE_ICON)
+        nextButtonTextRes = args.getInt(ARGS.NEXT_BUTTON_TEXT)
+        completeButtonTextRes = args.getInt(ARGS.COMPLETE_BUTTON_TEXT)
+        spacingRes = args.getInt(ARGS.SPACING)
+        lineWidthRes = args.getInt(ARGS.LINE_WIDTH)
+        cancelableCustom = args.getBoolean(ARGS.CANCELABLE)
+    }
+
+    private fun createLayout(): TutorialLayout {
+        val builder = Builder(
+                textColorRes,
+                shadowColorRes,
+                textSizeRes,
+                completeIconRes,
+                nextButtonTextRes,
+                completeButtonTextRes,
+                spacingRes,
+                lineWidthRes
+        )
+        return TutorialLayout(context, builder)
+    }
+
+    private fun initViews(view: TutorialLayout) {
+        view.setTutorialListener(listener)
+        isCancelable = cancelableCustom
+    }
+
+}

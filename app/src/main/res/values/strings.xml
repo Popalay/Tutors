@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TutorialLayout</string>
+    <string name="hello">Hello</string>
+    <string name="text_placeholder">Lorem ipsum dolor sit amet, mollis consectetuer ut vel. Risus dapibus in, lorem taciti eget ut eveniet laoreet, pellentesque sapien, magnis pellentesque, fermentum et aenean luctus. Tellus tincidunt adipiscing cursus feugiat erat adipiscing, consequat sed eros nunc orci.</string>
+    <string name="ok">Ok</string>
+    <string name="show_tutorials">Show Tutorials</string>
+</resources>
