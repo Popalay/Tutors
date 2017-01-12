@@ -39,7 +39,7 @@
             android:id="@+id/text_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="?colorPrimary"
             android:padding="@dimen/activity_horizontal_margin"
             android:text="@string/text_placeholder"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
