@@ -5,6 +5,8 @@
 
 A simple way to show the user interface tutorials.
 
+<img src="screenshots/demo-tutors.gif?raw=true" alt="" width="240" border="10" />
+
 ## Integration
 
 Add the library project or grab to build.gradle:
