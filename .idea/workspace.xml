@@ -3897,7 +3897,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484227398121</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Remove directory">
+      <created>1484227659861</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1484227659862</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3950,7 +3957,8 @@
     <MESSAGE value="Fix misspelling" />
     <MESSAGE value="Change demo gif" />
     <MESSAGE value="Update .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update .gitignore" />
+    <MESSAGE value="Remove directory" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove directory" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
