@@ -31,7 +31,17 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        dialog = TutorialDialog.create{}
+        dialog = TutorialDialog.create {
+            textColorRes = android.R.color.white
+            shadowColorRes = R.color.shadow
+            textSizeRes = R.dimen.textNormal
+            completeIconRes = R.drawable.ic_cross_24_white
+            nextButtonTextRes = R.string.action_next
+            completeButtonTextRes = R.string.action_got_it
+            spacingRes = R.dimen.spacingNormal
+            lineWidthRes = R.dimen.lineWidth
+            cancelable = false
+        }
 
         var iterator: MutableIterator<MutableMap.MutableEntry<String, View>>? = null
 
