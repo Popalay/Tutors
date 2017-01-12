@@ -5,12 +5,32 @@
 
 A simple way to show the user interface tutorials.
 
-## Integration
+<img src="screenshots/demo-tutors.gif?raw=true" alt="" width="240" border="10" />
 
-Add the library project or grab to build.gradle:
+## Getting Started
+
 ```groovy
 compile 'com.github.popalay:tutors-kotlin:latest-version'
 ```
+## Usage
+
+```kotlin
+val dialog = TutorialDialog.create {
+             textColorRes = android.R.color.white
+             shadowColorRes = R.color.shadow
+             textSizeRes = R.dimen.textNormal
+             completeIconRes = R.drawable.ic_cross_24_white
+             nextButtonTextRes = R.string.action_next
+             completeButtonTextRes = R.string.action_got_it
+             spacingRes = R.dimen.spacingNormal
+             lineWidthRes = R.dimen.lineWidth
+             cancelable = false
+}
+
+dialog.showTutorial(supportFragmentManager, view = toolbar, text = "It's a toolbar", isLast = true)
+```
+
+See [sample](sample/src/main/kotlin/com/github/popalay/tutorssample/MainActivity.kt).
 
 License
 -----
