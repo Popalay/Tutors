@@ -1,10 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.novoda.bintray-release'
 
-ext {
-    PUBLISH_GROUP_ID = 'com.popalay.tutors'
-    PUBLISH_ARTIFACT_ID = 'tutors'
-    PUBLISH_VERSION = '1.0.0'
+publish {
+    groupId = 'com.github.popalay'
+    artifactId = 'tutors-kotlin'
+    publishVersion = '1.0.0'
+    desc = 'A simple way to show the user interface tutorials'
+    licences = ['Apache-2.0']
+    uploadName='Tutors'
+    website = 'https://github.com/Popalay/Tutors.git'
 }
 
 android {
@@ -43,6 +48,3 @@ dependencies {
 repositories {
     mavenCentral()
 }
-
-// or use the remote copy to keep update with latest changes
-apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'

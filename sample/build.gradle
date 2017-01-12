@@ -34,7 +34,7 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile project(":library")
+    compile project(':tutors-kotlin')
 }
 repositories {
     mavenCentral()
