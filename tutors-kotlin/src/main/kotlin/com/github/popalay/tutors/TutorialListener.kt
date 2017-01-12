@@ -1,4 +1,4 @@
-package com.popalay.tutors
+package com.github.popalay.tutors
 
 interface TutorialListener {
 

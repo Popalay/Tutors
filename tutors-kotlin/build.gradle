@@ -2,16 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.novoda.bintray-release'
 
-publish {
-    groupId = 'com.github.popalay'
-    artifactId = 'tutors-kotlin'
-    publishVersion = '1.0.0'
-    desc = 'A simple way to show the user interface tutorials'
-    licences = ['Apache-2.0']
-    uploadName='Tutors'
-    website = 'https://github.com/Popalay/Tutors.git'
-}
-
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -45,6 +35,32 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
+
+buildscript {
+    ext.kotlin_version = '1.0.6'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 repositories {
     mavenCentral()
 }
+
+publish {
+    groupId = 'com.github.popalay'
+    artifactId = 'tutors-kotlin'
+    publishVersion = '1.0.0'
+    desc = 'A simple way to show the user interface tutorials'
+    licences = ['Apache-2.0']
+    uploadName = 'Tutors'
+    website = 'https://github.com/Popalay/Tutors'
+}
+
+afterEvaluate {
+    tasks.findByPath(":tutors-kotlin:releaseAndroidJavadocs").enabled = false
+}
+

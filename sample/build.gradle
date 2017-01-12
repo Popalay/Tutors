@@ -6,7 +6,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.popalay.tutorssample"
+        applicationId "com.github.popalay.tutorssample"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1

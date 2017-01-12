@@ -1,4 +1,4 @@
-package com.popalay.tutors
+package com.github.popalay.tutors
 
 import android.content.Context
 import android.graphics.Bitmap

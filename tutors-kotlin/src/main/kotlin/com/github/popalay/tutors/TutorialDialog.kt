@@ -1,5 +1,6 @@
-package com.popalay.tutors
+package com.github.popalay.tutors
 
+import android.R
 import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
@@ -77,7 +78,7 @@ class TutorialDialog : DialogFragment() {
     override fun onStart() {
         super.onStart()
         dialog.window?.apply {
-            setBackgroundDrawableResource(android.R.color.transparent)
+            setBackgroundDrawableResource(R.color.transparent)
             setDimAmount(0f)
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }

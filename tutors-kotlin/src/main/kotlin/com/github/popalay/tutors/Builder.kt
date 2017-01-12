@@ -1,4 +1,4 @@
-package com.popalay.tutors
+package com.github.popalay.tutors
 
 class Builder(var textColorRes: Int = 0,
               var shadowColorRes: Int = 0,

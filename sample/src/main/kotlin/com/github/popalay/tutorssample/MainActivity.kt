@@ -1,10 +1,10 @@
-package com.popalay.tutorssample
+package com.github.popalay.tutorssample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.popalay.tutors.TutorialDialog
-import com.popalay.tutors.TutorialListener
+import com.github.popalay.tutors.TutorialDialog
+import com.github.popalay.tutors.TutorialListener
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
