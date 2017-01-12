@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initTutorials() {
-        tutorials.put("This's a toolbar", toolbar)
-        tutorials.put("This's a button", button_hello)
-        tutorials.put("This's a borderless button", button_ok)
-        tutorials.put("This's a text", text_description)
+        tutorials.put("It's a toolbar", toolbar)
+        tutorials.put("It's a button", button_hello)
+        tutorials.put("It's a borderless button", button_ok)
+        tutorials.put("It's a text", text_description)
     }
 
     private fun initViews() {
