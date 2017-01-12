@@ -5,7 +5,7 @@
 
 A simple way to show the user interface tutorials.
 
-<img src="screenshots/demo-tutors.gif?raw=true" alt="" width="240" border="10" />
+<img src="screenshots/demo.gif?raw=true" alt="" width="240" border="10" />
 
 ## Getting Started
 
