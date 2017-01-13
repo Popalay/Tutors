@@ -1,6 +1,5 @@
 package com.github.popalay.tutors
 
-import android.R
 import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
@@ -10,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 
-class TutorialDialog : DialogFragment() {
+class Tutors : DialogFragment() {
 
     private object ARGS {
         const val TEXT_COLOR = "TEXT_COLOR"
@@ -37,9 +36,9 @@ class TutorialDialog : DialogFragment() {
     private var listener: TutorialListener? = null
 
     companion object {
-        fun newInstance(builder: Builder): TutorialDialog {
+        fun newInstance(builder: Builder): Tutors {
             val args = Bundle()
-            val fragment = TutorialDialog()
+            val fragment = Tutors()
 
             args.putInt(ARGS.TEXT_COLOR, builder.textColorRes)
             args.putInt(ARGS.SHADOW_COLOR, builder.shadowColorRes)
@@ -78,7 +77,7 @@ class TutorialDialog : DialogFragment() {
     override fun onStart() {
         super.onStart()
         dialog.window?.apply {
-            setBackgroundDrawableResource(R.color.transparent)
+            setBackgroundDrawableResource(android.R.color.transparent)
             setDimAmount(0f)
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }
@@ -88,14 +87,14 @@ class TutorialDialog : DialogFragment() {
         this.listener = tutorialListener
     }
 
-    fun showTutorial(fragmentManager: FragmentManager, view: View, text: CharSequence, isLast: Boolean = false) {
+    fun show(fragmentManager: FragmentManager, view: View, text: CharSequence, isLast: Boolean = false) {
         if (!isVisible) {
             show(fragmentManager, this.javaClass.name)
         }
         view.post { (this.view as TutorialLayout).showTutorial(view, text, isLast) }
     }
 
-    fun closeTutorial() {
+    fun close() {
         dismiss()
         (this.view as TutorialLayout).closeTutorial()
     }

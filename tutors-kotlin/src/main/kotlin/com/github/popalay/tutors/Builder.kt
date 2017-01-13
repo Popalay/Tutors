@@ -32,6 +32,6 @@ class Builder(var textColorRes: Int = 0,
 
     fun cancelable(init: Builder.() -> Boolean) = apply { cancelable = init() }
 
-    fun build() = TutorialDialog.newInstance(this)
+    fun build() = Tutors.newInstance(this)
 
 }

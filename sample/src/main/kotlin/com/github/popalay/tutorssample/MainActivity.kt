@@ -3,15 +3,15 @@ package com.github.popalay.tutorssample
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.github.popalay.tutors.TutorialDialog
 import com.github.popalay.tutors.TutorialListener
+import com.github.popalay.tutors.Tutors
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private val tutorials: MutableMap<String, View> = HashMap()
-    private lateinit var dialog: TutorialDialog
+    private lateinit var tutors: Tutors
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        dialog = TutorialDialog.create {
+        tutors = Tutors.create {
             textColorRes = android.R.color.white
             shadowColorRes = R.color.shadow
             textSizeRes = R.dimen.textNormal
@@ -51,18 +51,18 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        dialog.setTutorialListener(object : TutorialListener {
+        tutors.setTutorialListener(object : TutorialListener {
 
             override fun onNext() {
                 showTutorial(iterator)
             }
 
             override fun onComplete() {
-                dialog.closeTutorial()
+                tutors.close()
             }
 
             override fun onCompleteAll() {
-                dialog.closeTutorial()
+                tutors.close()
             }
 
         })
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         iterator?.let {
             if (iterator.hasNext()) {
                 val next = iterator.next()
-                dialog.showTutorial(supportFragmentManager, next.value, next.key, !iterator.hasNext())
+                tutors.show(supportFragmentManager, next.value, next.key, !iterator.hasNext())
             }
         }
     }

@@ -15,7 +15,7 @@ compile 'com.github.popalay:tutors-kotlin:latest-version'
 ## Usage
 
 ```kotlin
-val dialog = TutorialDialog.create {
+val tutors = Tutors.create {
              textColorRes = android.R.color.white
              shadowColorRes = R.color.shadow
              textSizeRes = R.dimen.textNormal
@@ -27,7 +27,7 @@ val dialog = TutorialDialog.create {
              cancelable = false
 }
 
-dialog.showTutorial(supportFragmentManager, view = toolbar, text = "It's a toolbar", isLast = true)
+tutors.show(supportFragmentManager, view = toolbar, text = "It's a toolbar", isLast = true)
 ```
 
 See [sample](sample/src/main/kotlin/com/github/popalay/tutorssample/MainActivity.kt).
