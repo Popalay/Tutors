@@ -33,7 +33,7 @@ Tutors tutors = new TutorsBuilder()
 tutors.show(getSupportFragmentManager(), toolbar, "It's a toolbar", !iterator.hasNext());
 ```
 
-See [sample](sample/src/main/java/com/github/popalay/tutorssample/MainActivity.kt).
+See [sample](sample/src/main/java/com/github/popalay/tutorssample/MainActivity.java).
 
 ### From Kotlin
 

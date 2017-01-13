@@ -52,7 +52,7 @@ publish {
     publishVersion = '1.0.1'
     desc = 'A simple way to show the user interface tutorials'
     licences = ['Apache-2.0']
-    uploadName = 'Tutors'
+    uploadName = 'Tutors-Kotlin'
     website = 'https://github.com/Popalay/Tutors'
 }
 
