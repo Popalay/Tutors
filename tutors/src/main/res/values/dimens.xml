@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacingNormal">16dp</dimen>
+    <dimen name="textNormal">16sp</dimen>
+    <dimen name="lineWidth">1dp</dimen>
+</resources>

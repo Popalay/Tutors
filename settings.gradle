@@ -1,1 +1,1 @@
-include ':sample', ':tutors-kotlin'
+include ':sample', ':tutors-kotlin', ':tutors'

@@ -36,7 +36,7 @@ class Tutors : DialogFragment() {
     private var listener: TutorialListener? = null
 
     companion object {
-        fun newInstance(builder: Builder): Tutors {
+        fun newInstance(builder: TutorsBuilder): Tutors {
             val args = Bundle()
             val fragment = Tutors()
 
@@ -54,7 +54,7 @@ class Tutors : DialogFragment() {
             return fragment
         }
 
-        fun create(init: Builder.() -> Unit) = Builder(init).build()
+        fun create(init: TutorsBuilder.() -> Unit) = TutorsBuilder(init).build()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,8 +83,8 @@ class Tutors : DialogFragment() {
         }
     }
 
-    fun setTutorialListener(tutorialListener: TutorialListener) {
-        this.listener = tutorialListener
+    fun setListener(listener: TutorialListener) {
+        this.listener = listener
     }
 
     fun show(fragmentManager: FragmentManager, view: View, text: CharSequence, isLast: Boolean = false) {
@@ -100,27 +100,27 @@ class Tutors : DialogFragment() {
     }
 
     private fun getArgs(args: Bundle) {
-        textColorRes = args.getInt(ARGS.TEXT_COLOR)
-        shadowColorRes = args.getInt(ARGS.SHADOW_COLOR)
-        textSizeRes = args.getInt(ARGS.TEXT_SIZE)
-        completeIconRes = args.getInt(ARGS.COMPLETE_ICON)
-        nextButtonTextRes = args.getInt(ARGS.NEXT_BUTTON_TEXT)
-        completeButtonTextRes = args.getInt(ARGS.COMPLETE_BUTTON_TEXT)
-        spacingRes = args.getInt(ARGS.SPACING)
-        lineWidthRes = args.getInt(ARGS.LINE_WIDTH)
-        cancelableCustom = args.getBoolean(ARGS.CANCELABLE)
+        this.textColorRes = args.getInt(ARGS.TEXT_COLOR)
+        this.shadowColorRes = args.getInt(ARGS.SHADOW_COLOR)
+        this.textSizeRes = args.getInt(ARGS.TEXT_SIZE)
+        this.completeIconRes = args.getInt(ARGS.COMPLETE_ICON)
+        this.nextButtonTextRes = args.getInt(ARGS.NEXT_BUTTON_TEXT)
+        this.completeButtonTextRes = args.getInt(ARGS.COMPLETE_BUTTON_TEXT)
+        this.spacingRes = args.getInt(ARGS.SPACING)
+        this.lineWidthRes = args.getInt(ARGS.LINE_WIDTH)
+        this.cancelableCustom = args.getBoolean(ARGS.CANCELABLE)
     }
 
     private fun createLayout(): TutorialLayout {
-        val builder = Builder(
-                textColorRes,
-                shadowColorRes,
-                textSizeRes,
-                completeIconRes,
-                nextButtonTextRes,
-                completeButtonTextRes,
-                spacingRes,
-                lineWidthRes
+        val builder = TutorsBuilder(
+                this.textColorRes,
+                this.shadowColorRes,
+                this.textSizeRes,
+                this.completeIconRes,
+                this.nextButtonTextRes,
+                this.completeButtonTextRes,
+                this.spacingRes,
+                this.lineWidthRes
         )
         return TutorialLayout(context, builder)
     }

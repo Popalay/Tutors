@@ -15,7 +15,6 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -48,7 +47,7 @@ class TutorialLayout : FrameLayout {
         init(context)
     }
 
-    constructor(context: Context, builder: Builder) : super(context) {
+    constructor(context: Context, builder: TutorsBuilder) : super(context) {
         init(context, builder)
     }
 
@@ -76,7 +75,6 @@ class TutorialLayout : FrameLayout {
         this.isLast = isLast
 
         bitmap?.recycle()
-        bitmap = null
         lastTutorialView?.isDrawingCacheEnabled = false
 
         val location = IntArray(2)
@@ -91,7 +89,7 @@ class TutorialLayout : FrameLayout {
         this.y = location[1] - getStatusBarHeight()
 
         this.visibility = View.VISIBLE
-        textTo(!inTop())
+        moveText(!inTop())
         invalidate()
     }
 
@@ -131,7 +129,7 @@ class TutorialLayout : FrameLayout {
         return true
     }
 
-    private fun init(context: Context, builder: Builder? = null) {
+    private fun init(context: Context, builder: TutorsBuilder? = null) {
         visibility = View.GONE
 
         if (isInEditMode) {
@@ -156,7 +154,7 @@ class TutorialLayout : FrameLayout {
         initCross(context)
     }
 
-    private fun applyAttrs(context: Context, builder: Builder?) {
+    private fun applyAttrs(context: Context, builder: TutorsBuilder?) {
         this.textColor = Color.WHITE
         this.textSize = resources.getDimension(R.dimen.textNormal)
         this.shadowColor = ContextCompat.getColor(context, R.color.shadow)
@@ -196,8 +194,7 @@ class TutorialLayout : FrameLayout {
 
     private fun initButton(context: Context) {
         this.buttonNext = Button(context)
-        val layoutParams = LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT)
+        val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         layoutParams.gravity = Gravity.BOTTOM or Gravity.END
         this.buttonNext.layoutParams = layoutParams
 
@@ -205,7 +202,7 @@ class TutorialLayout : FrameLayout {
         context.theme.resolveAttribute(android.R.attr.selectableItemBackground, outValue, true)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            this.buttonNext.foreground = resources.getDrawable(outValue.resourceId, getContext().theme)
+            this.buttonNext.foreground = resources.getDrawable(outValue.resourceId, context.theme)
         }
 
         addView(buttonNext)
@@ -217,7 +214,7 @@ class TutorialLayout : FrameLayout {
 
     private fun initCross(context: Context) {
         val cross = ImageView(context)
-        val layoutParams = LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         layoutParams.gravity = Gravity.TOP or Gravity.END
         cross.layoutParams = layoutParams
         cross.setImageDrawable(completeIcon)
@@ -237,8 +234,8 @@ class TutorialLayout : FrameLayout {
         addView(this.text)
     }
 
-    private fun textTo(top: Boolean) {
-        val layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+    private fun moveText(top: Boolean) {
+        val layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         layoutParams.gravity = Gravity.CENTER or if (top) Gravity.TOP else Gravity.BOTTOM
         val margin = spacing * 3
         if (top) {

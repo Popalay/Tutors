@@ -8,7 +8,7 @@ import com.github.popalay.tutors.Tutors
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainKotlinActivity : AppCompatActivity() {
 
     private val tutorials: MutableMap<String, View> = HashMap()
     private lateinit var tutors: Tutors
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        tutors.setTutorialListener(object : TutorialListener {
+        tutors.setListener(object : TutorialListener {
 
             override fun onNext() {
                 showTutorial(iterator)

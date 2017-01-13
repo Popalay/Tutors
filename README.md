@@ -10,9 +10,32 @@ A simple way to show the user interface tutorials.
 ## Getting Started
 
 ```groovy
+compile 'com.github.popalay:tutors:latest-version'
 compile 'com.github.popalay:tutors-kotlin:latest-version'
 ```
 ## Usage
+
+### From Java
+
+```java
+Tutors tutors = new TutorsBuilder()
+                .textColorRes(android.R.color.white)
+                .shadowColorRes(R.color.shadow)
+                .textSizeRes(R.dimen.textNormal)
+                .completeIconRes(R.drawable.ic_cross_24_white)
+                .nextButtonTextRes(R.string.action_next)
+                .completeButtonTextRes(R.string.action_got_it)
+                .spacingRes(R.dimen.spacingNormal)
+                .lineWidthRes(R.dimen.lineWidth)
+                .cancelable(false)
+                .build();
+
+tutors.show(getSupportFragmentManager(), toolbar, "It's a toolbar", !iterator.hasNext());
+```
+
+See [sample](sample/src/main/java/com/github/popalay/tutorssample/MainActivity.kt).
+
+### From Kotlin
 
 ```kotlin
 val tutors = Tutors.create {
@@ -30,7 +53,7 @@ val tutors = Tutors.create {
 tutors.show(supportFragmentManager, view = toolbar, text = "It's a toolbar", isLast = true)
 ```
 
-See [sample](sample/src/main/kotlin/com/github/popalay/tutorssample/MainActivity.kt).
+See [sample](sample/src/main/kotlin/com/github/popalay/tutorssample/MainKotlinActivity.kt).
 
 License
 -----
