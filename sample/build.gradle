@@ -26,6 +26,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Library
+    compile project(path: ':tutors')
+    compile project(path: ':tutors-kotlin')
+
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -34,9 +39,6 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    compile 'com.github.popalay:tutors:1.0.1'
-    compile 'com.github.popalay:tutors-kotlin:1.0.1'
 }
 repositories {
     mavenCentral()
