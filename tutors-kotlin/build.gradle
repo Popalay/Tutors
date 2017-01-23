@@ -10,7 +10,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 2
-        versionName "1.0.1"
+        versionName "1.0.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -49,7 +49,7 @@ buildscript {
 publish {
     groupId = 'com.github.popalay'
     artifactId = 'tutors-kotlin'
-    publishVersion = '1.0.1'
+    publishVersion = '1.0.2'
     desc = 'A simple way to show the user interface tutorials'
     licences = ['Apache-2.0']
     uploadName = 'Tutors-Kotlin'

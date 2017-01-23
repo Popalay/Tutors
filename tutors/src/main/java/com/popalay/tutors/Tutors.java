@@ -57,6 +57,7 @@ public class Tutors extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getArgs(getArguments());
+        setRetainInstance(true);
     }
 
     @Override
@@ -68,9 +69,8 @@ public class Tutors extends DialogFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         final View view = createLayout();
         initViews(((TutorialLayout) view));
         return view;
@@ -145,5 +145,4 @@ public class Tutors extends DialogFragment {
         view.setTutorialListener(listener);
         setCancelable(cancelableCustom);
     }
-
 }
