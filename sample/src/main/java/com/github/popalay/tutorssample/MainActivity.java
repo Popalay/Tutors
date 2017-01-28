@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        animator.setDuration(1500);
+        animator.setDuration(500);
         animator.setRepeatMode(ValueAnimator.REVERSE);
         animator.setRepeatCount(-1);
         animator.start();
