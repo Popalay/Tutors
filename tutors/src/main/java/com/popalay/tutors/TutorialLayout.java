@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
@@ -41,6 +43,7 @@ public class TutorialLayout extends FrameLayout {
     private Bitmap bitmap;
     private View lastTutorialView;
     private Paint paint;
+    private Paint holePaint;
 
     public TutorialLayout(Context context, @Nullable TutorsBuilder builder) {
         super(context);
@@ -98,7 +101,7 @@ public class TutorialLayout extends FrameLayout {
 
         this.setVisibility(View.VISIBLE);
         moveText(!inTop());
-        invalidate();
+        postInvalidate();
     }
 
     public void closeTutorial() {
@@ -126,7 +129,7 @@ public class TutorialLayout extends FrameLayout {
             return;
         }
 
-        canvas.drawBitmap(this.bitmap, this.x, this.y, paint);
+        canvas.drawBitmap(this.bitmap, this.x, this.y, holePaint);
         final boolean inTop = inTop();
 
         final float lineX = this.x + this.bitmap.getWidth() / 2;
@@ -155,6 +158,9 @@ public class TutorialLayout extends FrameLayout {
         setWillNotDraw(false);
 
         applyAttrs(context, builder);
+
+        holePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        holePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
 
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(textColor);
@@ -286,6 +292,7 @@ public class TutorialLayout extends FrameLayout {
         }
         this.lastTutorialView = null;
         this.paint = null;
+        this.holePaint = null;
     }
 
     private int getStatusBarHeight() {

@@ -1,10 +1,7 @@
 package com.github.popalay.tutors
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.support.annotation.AttrRes
@@ -42,6 +39,7 @@ class TutorialLayout : FrameLayout {
     private var bitmap: Bitmap? = null
     private var lastTutorialView: View? = null
     private var paint: Paint? = null
+    private var holePaint: Paint? = null
 
     constructor(context: Context) : super(context) {
         init(context)
@@ -90,7 +88,7 @@ class TutorialLayout : FrameLayout {
 
         this.visibility = View.VISIBLE
         moveText(!inTop())
-        invalidate()
+        postInvalidate()
     }
 
     fun closeTutorial() {
@@ -109,7 +107,7 @@ class TutorialLayout : FrameLayout {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         bitmap?.apply {
-            canvas.drawBitmap(this, x.toFloat(), y.toFloat(), paint)
+            canvas.drawBitmap(this, x.toFloat(), y.toFloat(), holePaint)
             val inTop = inTop()
 
             val lineX = x + this.width / 2
@@ -143,6 +141,9 @@ class TutorialLayout : FrameLayout {
         paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint?.color = textColor
         paint?.strokeWidth = lineWidth
+
+        holePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        holePaint?.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
 
         setPadding(spacing, spacing, spacing, spacing)
         setBackgroundColor(shadowColor)
@@ -252,6 +253,7 @@ class TutorialLayout : FrameLayout {
         this.lastTutorialView?.isDrawingCacheEnabled = false
         this.lastTutorialView = null
         this.paint = null
+        this.holePaint = null
     }
 
     private fun getStatusBarHeight(): Int {
