@@ -16,7 +16,6 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,8 +26,6 @@ public class TutorialLayout extends FrameLayout {
     private int shadowColor;
     private float textSize;
     private Drawable completeIcon;
-    private String nextButtonText;
-    private String completeButtonText;
     private int spacing;
     private float lineWidth;
 
@@ -38,7 +35,6 @@ public class TutorialLayout extends FrameLayout {
     private int y;
 
     private TutorialListener tutorialListener;
-    private Button buttonNext;
     private TextView text;
     private Bitmap bitmap;
     private View lastTutorialView;
@@ -94,7 +90,6 @@ public class TutorialLayout extends FrameLayout {
         view.setDrawingCacheEnabled(true);
 
         this.text.setText(text);
-        this.buttonNext.setText(isLast ? this.completeButtonText : this.nextButtonText);
         this.bitmap = view.getDrawingCache();
         this.x = location[0];
         this.y = location[1] - getStatusBarHeight();
@@ -171,9 +166,21 @@ public class TutorialLayout extends FrameLayout {
         setClickable(true);
         setFocusable(true);
 
-        initButton(context);
         initText(context);
         initCross(context);
+
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (TutorialLayout.this.tutorialListener != null) {
+                    if (TutorialLayout.this.isLast) {
+                        TutorialLayout.this.tutorialListener.onComplete();
+                    } else {
+                        TutorialLayout.this.tutorialListener.onNext();
+                    }
+                }
+            }
+        });
     }
 
     private void applyAttrs(Context context, @Nullable TutorsBuilder builder) {
@@ -181,8 +188,6 @@ public class TutorialLayout extends FrameLayout {
         this.textSize = getResources().getDimension(R.dimen.textNormal);
         this.shadowColor = ContextCompat.getColor(context, R.color.shadow);
         this.completeIcon = ContextCompat.getDrawable(context, R.drawable.ic_cross_24_white);
-        this.nextButtonText = getResources().getString(R.string.action_next);
-        this.completeButtonText = getResources().getString(R.string.action_got_it);
         this.spacing = (int) getResources().getDimension(R.dimen.spacingNormal);
         this.lineWidth = getResources().getDimension(R.dimen.lineWidth);
 
@@ -202,45 +207,11 @@ public class TutorialLayout extends FrameLayout {
         this.completeIcon = builder.getCompleteIconRes() != 0 ? ContextCompat
                 .getDrawable(context, builder.getCompleteIconRes()) : this.completeIcon;
 
-        this.nextButtonText = builder.getNextButtonTextRes() != 0 ? getResources()
-                .getString(builder.getNextButtonTextRes()) : this.nextButtonText;
-
-        this.completeButtonText = builder.getCompleteButtonTextRes() != 0 ? getResources()
-                .getString(builder.getCompleteButtonTextRes()) : this.completeButtonText;
-
         this.spacing = builder.getSpacingRes() != 0 ? (int) getResources().getDimension(builder.getSpacingRes())
                 : this.spacing;
 
         this.lineWidth = builder.getLineWidthRes() != 0 ? getResources().getDimension(builder.getLineWidthRes())
                 : this.lineWidth;
-    }
-
-    private void initButton(Context context) {
-        this.buttonNext = new Button(context);
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        layoutParams.gravity = Gravity.BOTTOM | Gravity.END;
-        this.buttonNext.setLayoutParams(layoutParams);
-
-        TypedValue outValue = new TypedValue();
-        context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            this.buttonNext.setForeground(this.getResources().getDrawable(outValue.resourceId, context.getTheme()));
-        }
-
-        this.addView(this.buttonNext);
-
-        this.buttonNext.setOnClickListener(new OnClickListener() {
-            public final void onClick(View it) {
-                if (TutorialLayout.this.tutorialListener != null) {
-                    if (TutorialLayout.this.isLast) {
-                        TutorialLayout.this.tutorialListener.onComplete();
-                    } else {
-                        TutorialLayout.this.tutorialListener.onNext();
-                    }
-                }
-
-            }
-        });
     }
 
     private void initCross(Context context) {

@@ -12,7 +12,6 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
-import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -23,8 +22,6 @@ class TutorialLayout : FrameLayout {
     private var shadowColor: Int = 0
     private var textSize: Float = 0f
     private lateinit var completeIcon: Drawable
-    private lateinit var nextButtonText: String
-    private lateinit var completeButtonText: String
     private var spacing: Int = 0
     private var lineWidth: Float = 0f
 
@@ -34,7 +31,6 @@ class TutorialLayout : FrameLayout {
     private var y: Int = 0
 
     private var tutorialListener: TutorialListener? = null
-    private lateinit var buttonNext: Button
     private lateinit var text: TextView
     private var bitmap: Bitmap? = null
     private var lastTutorialView: View? = null
@@ -81,7 +77,6 @@ class TutorialLayout : FrameLayout {
         view.isDrawingCacheEnabled = true
 
         this.text.text = text
-        this.buttonNext.text = if (isLast) this.completeButtonText else this.nextButtonText
         this.bitmap = view.drawingCache
         this.x = location[0]
         this.y = location[1] - getStatusBarHeight()
@@ -150,9 +145,11 @@ class TutorialLayout : FrameLayout {
         isClickable = true
         isFocusable = true
 
-        initButton(context)
         initText(context)
         initCross(context)
+        setOnClickListener {
+            tutorialListener?.apply { if (isLast) onComplete() else onNext() }
+        }
     }
 
     private fun applyAttrs(context: Context, builder: TutorsBuilder?) {
@@ -160,8 +157,6 @@ class TutorialLayout : FrameLayout {
         this.textSize = resources.getDimension(R.dimen.textNormal)
         this.shadowColor = ContextCompat.getColor(context, R.color.shadow)
         this.completeIcon = ContextCompat.getDrawable(context, R.drawable.ic_cross_24_white)
-        this.nextButtonText = resources.getString(R.string.action_next)
-        this.completeButtonText = resources.getString(R.string.action_got_it)
         this.spacing = resources.getDimension(R.dimen.spacingNormal).toInt()
         this.lineWidth = resources.getDimension(R.dimen.lineWidth)
 
@@ -178,38 +173,12 @@ class TutorialLayout : FrameLayout {
             this.completeIcon = builder.completeIconRes.ifNotZero(this.completeIcon) {
                 ContextCompat.getDrawable(context, it)
             }
-            this.nextButtonText = builder.nextButtonTextRes.ifNotZero(this.nextButtonText) {
-                resources.getString(it)
-            }
-            this.completeButtonText = builder.completeButtonTextRes.ifNotZero(this.completeButtonText) {
-                resources.getString(it)
-            }
             this.spacing = builder.spacingRes.ifNotZero(this.spacing) {
                 resources.getDimension(it).toInt()
             }
             this.lineWidth = builder.lineWidthRes.ifNotZero(this.lineWidth) {
                 resources.getDimension(it)
             }
-        }
-    }
-
-    private fun initButton(context: Context) {
-        this.buttonNext = Button(context)
-        val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-        layoutParams.gravity = Gravity.BOTTOM or Gravity.END
-        this.buttonNext.layoutParams = layoutParams
-
-        val outValue = TypedValue()
-        context.theme.resolveAttribute(android.R.attr.selectableItemBackground, outValue, true)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            this.buttonNext.foreground = resources.getDrawable(outValue.resourceId, context.theme)
-        }
-
-        addView(buttonNext)
-
-        this.buttonNext.setOnClickListener {
-            tutorialListener?.apply { if (isLast) onComplete() else onNext() }
         }
     }
 

@@ -13,8 +13,8 @@ import com.popalay.tutors.TutorialListener;
 import com.popalay.tutors.Tutors;
 import com.popalay.tutors.TutorsBuilder;
 
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, TutorialListener {
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textDescription;
     private Button buttonShow;
     private Button buttonOk;
-    private HashMap<String, View> tutorials;
+    private Map<String, View> tutorials;
     private Iterator<Map.Entry<String, View>> iterator;
     private Tutors tutors;
 
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initTutorials() {
-        tutorials = new HashMap<>();
+        tutorials = new LinkedHashMap<>();
         tutorials.put("It's a toolbar", toolbar);
         tutorials.put("It's a button", buttonHello);
         tutorials.put("It's a borderless button", buttonOk);
@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .shadowColorRes(R.color.shadow)
                 .textSizeRes(R.dimen.textNormal)
                 .completeIconRes(R.drawable.ic_cross_24_white)
-                .nextButtonTextRes(R.string.action_next)
-                .completeButtonTextRes(R.string.action_got_it)
                 .spacingRes(R.dimen.spacingNormal)
                 .lineWidthRes(R.dimen.lineWidth)
                 .cancelable(false)

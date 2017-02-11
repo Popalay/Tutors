@@ -6,8 +6,6 @@ public class TutorsBuilder {
     private int shadowColorRes;
     private int textSizeRes;
     private int completeIconRes;
-    private int nextButtonTextRes;
-    private int completeButtonTextRes;
     private int spacingRes;
     private int lineWidthRes;
     private boolean cancelable;
@@ -29,16 +27,6 @@ public class TutorsBuilder {
 
     public TutorsBuilder completeIconRes(int completeIconRes) {
         this.completeIconRes = completeIconRes;
-        return this;
-    }
-
-    public TutorsBuilder nextButtonTextRes(int nextButtonTextRes) {
-        this.nextButtonTextRes = nextButtonTextRes;
-        return this;
-    }
-
-    public TutorsBuilder completeButtonTextRes(int completeButtonTextRes) {
-        this.completeButtonTextRes = completeButtonTextRes;
         return this;
     }
 
@@ -71,14 +59,6 @@ public class TutorsBuilder {
 
     public int getCompleteIconRes() {
         return completeIconRes;
-    }
-
-    public int getNextButtonTextRes() {
-        return nextButtonTextRes;
-    }
-
-    public int getCompleteButtonTextRes() {
-        return completeButtonTextRes;
     }
 
     public int getSpacingRes() {

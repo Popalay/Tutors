@@ -16,8 +16,6 @@ class Tutors : DialogFragment() {
         const val TEXT_SIZE = "TEXT_SIZE"
         const val SHADOW_COLOR = "SHADOW_COLOR"
         const val COMPLETE_ICON = "COMPLETE_ICON"
-        const val NEXT_BUTTON_TEXT = "NEXT_BUTTON_TEXT"
-        const val COMPLETE_BUTTON_TEXT = "COMPLETE_BUTTON_TEXT"
         const val SPACING = "SPACING"
         const val LINE_WIDTH = "LINE_WIDTH"
         const val CANCELABLE = "CANCELABLE"
@@ -27,8 +25,6 @@ class Tutors : DialogFragment() {
     private var shadowColorRes: Int = 0
     private var textSizeRes: Int = 0
     private var completeIconRes: Int = 0
-    private var nextButtonTextRes: Int = 0
-    private var completeButtonTextRes: Int = 0
     private var spacingRes: Int = 0
     private var lineWidthRes: Int = 0
     private var cancelableCustom: Boolean = false
@@ -44,8 +40,6 @@ class Tutors : DialogFragment() {
             args.putInt(ARGS.SHADOW_COLOR, builder.shadowColorRes)
             args.putInt(ARGS.TEXT_SIZE, builder.textSizeRes)
             args.putInt(ARGS.COMPLETE_ICON, builder.completeIconRes)
-            args.putInt(ARGS.NEXT_BUTTON_TEXT, builder.nextButtonTextRes)
-            args.putInt(ARGS.COMPLETE_BUTTON_TEXT, builder.completeButtonTextRes)
             args.putInt(ARGS.SPACING, builder.spacingRes)
             args.putInt(ARGS.LINE_WIDTH, builder.lineWidthRes)
             args.putBoolean(ARGS.CANCELABLE, builder.cancelable)
@@ -105,8 +99,6 @@ class Tutors : DialogFragment() {
         this.shadowColorRes = args.getInt(ARGS.SHADOW_COLOR)
         this.textSizeRes = args.getInt(ARGS.TEXT_SIZE)
         this.completeIconRes = args.getInt(ARGS.COMPLETE_ICON)
-        this.nextButtonTextRes = args.getInt(ARGS.NEXT_BUTTON_TEXT)
-        this.completeButtonTextRes = args.getInt(ARGS.COMPLETE_BUTTON_TEXT)
         this.spacingRes = args.getInt(ARGS.SPACING)
         this.lineWidthRes = args.getInt(ARGS.LINE_WIDTH)
         this.cancelableCustom = args.getBoolean(ARGS.CANCELABLE)
@@ -118,8 +110,6 @@ class Tutors : DialogFragment() {
                 this.shadowColorRes,
                 this.textSizeRes,
                 this.completeIconRes,
-                this.nextButtonTextRes,
-                this.completeButtonTextRes,
                 this.spacingRes,
                 this.lineWidthRes
         )

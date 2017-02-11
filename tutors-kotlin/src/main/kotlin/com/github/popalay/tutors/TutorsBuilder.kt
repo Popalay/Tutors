@@ -4,8 +4,6 @@ class TutorsBuilder(var textColorRes: Int = 0,
                     var shadowColorRes: Int = 0,
                     var textSizeRes: Int = 0,
                     var completeIconRes: Int = 0,
-                    var nextButtonTextRes: Int = 0,
-                    var completeButtonTextRes: Int = 0,
                     var spacingRes: Int = 0,
                     var lineWidthRes: Int = 0,
                     var cancelable: Boolean = false) {
@@ -21,10 +19,6 @@ class TutorsBuilder(var textColorRes: Int = 0,
     fun textSizeRes(init: TutorsBuilder.() -> Int) = apply { textSizeRes = init() }
 
     fun completeIconRes(init: TutorsBuilder.() -> Int) = apply { completeIconRes = init() }
-
-    fun nextButtonTextRes(init: TutorsBuilder.() -> Int) = apply { nextButtonTextRes = init() }
-
-    fun completeButtonTextRes(init: TutorsBuilder.() -> Int) = apply { completeButtonTextRes = init() }
 
     fun spacingRes(init: TutorsBuilder.() -> Int) = apply { spacingRes = init() }
 

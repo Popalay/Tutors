@@ -17,8 +17,6 @@ public class Tutors extends DialogFragment {
     private static final String ARG_TEXT_SIZE = "TEXT_SIZE";
     private static final String ARG_SHADOW_COLOR = "SHADOW_COLOR";
     private static final String ARG_COMPLETE_ICON = "COMPLETE_ICON";
-    private static final String ARG_NEXT_BUTTON_TEXT = "NEXT_BUTTON_TEXT";
-    private static final String ARG_COMPLETE_BUTTON_TEXT = "COMPLETE_BUTTON_TEXT";
     private static final String ARG_SPACING = "SPACING";
     private static final String ARG_LINE_WIDTH = "LINE_WIDTH";
     private static final String ARG_CANCELABLE = "CANCELABLE";
@@ -27,8 +25,6 @@ public class Tutors extends DialogFragment {
     private int shadowColorRes;
     private int textSizeRes;
     private int completeIconRes;
-    private int nextButtonTextRes;
-    private int completeButtonTextRes;
     private int spacingRes;
     private int lineWidthRes;
     private boolean cancelableCustom;
@@ -43,8 +39,6 @@ public class Tutors extends DialogFragment {
         args.putInt(ARG_SHADOW_COLOR, builder.getShadowColorRes());
         args.putInt(ARG_TEXT_SIZE, builder.getTextSizeRes());
         args.putInt(ARG_COMPLETE_ICON, builder.getCompleteIconRes());
-        args.putInt(ARG_NEXT_BUTTON_TEXT, builder.getNextButtonTextRes());
-        args.putInt(ARG_COMPLETE_BUTTON_TEXT, builder.getCompleteButtonTextRes());
         args.putInt(ARG_SPACING, builder.getSpacingRes());
         args.putInt(ARG_LINE_WIDTH, builder.getLineWidthRes());
         args.putBoolean(ARG_CANCELABLE, builder.isCancelable());
@@ -121,8 +115,6 @@ public class Tutors extends DialogFragment {
         this.shadowColorRes = args.getInt(ARG_SHADOW_COLOR);
         this.textSizeRes = args.getInt(ARG_TEXT_SIZE);
         this.completeIconRes = args.getInt(ARG_COMPLETE_ICON);
-        this.nextButtonTextRes = args.getInt(ARG_NEXT_BUTTON_TEXT);
-        this.completeButtonTextRes = args.getInt(ARG_COMPLETE_BUTTON_TEXT);
         this.spacingRes = args.getInt(ARG_SPACING);
         this.lineWidthRes = args.getInt(ARG_LINE_WIDTH);
         this.cancelableCustom = args.getBoolean(ARG_CANCELABLE);
@@ -134,8 +126,6 @@ public class Tutors extends DialogFragment {
                 .shadowColorRes(shadowColorRes)
                 .textSizeRes(textSizeRes)
                 .completeIconRes(completeIconRes)
-                .nextButtonTextRes(nextButtonTextRes)
-                .completeButtonTextRes(completeButtonTextRes)
                 .spacingRes(spacingRes)
                 .lineWidthRes(lineWidthRes);
         return new TutorialLayout(getContext(), builder);

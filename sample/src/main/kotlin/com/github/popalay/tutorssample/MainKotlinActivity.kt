@@ -10,7 +10,7 @@ import java.util.*
 
 class MainKotlinActivity : AppCompatActivity() {
 
-    private val tutorials: MutableMap<String, View> = HashMap()
+    private val tutorials: MutableMap<String, View> = LinkedHashMap()
     private lateinit var tutors: Tutors
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +36,6 @@ class MainKotlinActivity : AppCompatActivity() {
             shadowColorRes = R.color.shadow
             textSizeRes = R.dimen.textNormal
             completeIconRes = R.drawable.ic_cross_24_white
-            nextButtonTextRes = R.string.action_next
-            completeButtonTextRes = R.string.action_got_it
             spacingRes = R.dimen.spacingNormal
             lineWidthRes = R.dimen.lineWidth
             cancelable = false
