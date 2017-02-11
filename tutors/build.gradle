@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 4
+        versionName "1.0.4"
     }
     buildTypes {
         release {
@@ -21,14 +21,14 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    provided 'com.android.support:appcompat-v7:25.1.0'
+    provided 'com.android.support:appcompat-v7:25.1.1'
     testCompile 'junit:junit:4.12'
 }
 
 publish {
     groupId = 'com.github.popalay'
     artifactId = 'tutors'
-    publishVersion = '1.0.3'
+    publishVersion = '1.0.4'
     desc = 'A simple way to show the user interface tutorials'
     licences = ['Apache-2.0']
     uploadName = 'Tutors'
