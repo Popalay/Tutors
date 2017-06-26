@@ -40,6 +40,6 @@ publish {
 }
 
 afterEvaluate {
-//    tasks.findByPath(":tutors-kotlin:releaseAndroidJavadocs").enabled = false
+    tasks.findByPath(":tutors-kotlin:releaseAndroidJavadocs").enabled = false
 }
 

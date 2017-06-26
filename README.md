@@ -1,7 +1,7 @@
 [![Download](https://api.bintray.com/packages/popalay/maven/Tutors/images/download.svg) ](https://bintray.com/popalay/maven/Tutors/_latestVersion)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Tutors-orange.svg?style=flat)](https://android-arsenal.com/details/1/5075)
+[![API](https://img.shields.io/badge/API-14%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](https://github.com/Popalay/Tutors/blob/master/LICENSE)
-
 # Tutors
 
 A simple way to show the user interface tutorials.
