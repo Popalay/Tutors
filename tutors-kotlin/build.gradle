@@ -3,14 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
-
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 4
-        versionName "1.0.4"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
     }
     buildTypes {
         release {
@@ -26,24 +25,14 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    provided 'com.android.support:appcompat-v7:25.1.1'
-    provided "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-}
-
-buildscript {
-    ext.kotlin_version = '1.0.6'
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+    provided "com.android.support:appcompat-v7:$supportLibrary"
+    provided "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 }
 
 publish {
     groupId = 'com.github.popalay'
     artifactId = 'tutors-kotlin'
-    publishVersion = '1.0.4'
+    publishVersion = project.versionName
     desc = 'A simple way to show the user interface tutorials'
     licences = ['Apache-2.0']
     uploadName = 'Tutors-Kotlin'
@@ -51,6 +40,6 @@ publish {
 }
 
 afterEvaluate {
-    tasks.findByPath(":tutors-kotlin:releaseAndroidJavadocs").enabled = false
+//    tasks.findByPath(":tutors-kotlin:releaseAndroidJavadocs").enabled = false
 }
 
