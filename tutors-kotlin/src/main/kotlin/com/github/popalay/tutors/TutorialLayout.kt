@@ -94,6 +94,11 @@ class TutorialLayout : FrameLayout {
         this.lastTutorialView = null
     }
 
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        super.onLayout(changed, left, top, right, bottom)
+        moveText(!inTop())
+    }
+
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         recycleResources()
